@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
     inputs:
       branch:
-        description: "Select Branch [ official / lede ]"
+        description: "Select Branch [ official ]"
         required: false
         default: "lede"
       openwrt_soc:
@@ -50,7 +50,7 @@ jobs:
           sudo -E apt-get -qq clean
           sudo timedatectl set-timezone "$TZ"
           # Input value validation
-          ARR_BRANCH=("official" "lede")
+          ARR_BRANCH=("official")
           if [[ -n "${{ github.event.inputs.branch }}" && -n "$(echo "${ARR_BRANCH[@]}" | grep -w "${{ github.event.inputs.branch }}")" ]]; then
             RELEASES_BRANCH=${{ github.event.inputs.branch }}
           else
